@@ -53,6 +53,8 @@ type TransferTxResult struct {
 	ToEntry     Entry    `json:"to_entry"`
 }
 
+var txKey = struct{}{}
+
 // TranferTx ferforms a money transfer from one acccoun to the other.
 // It creates a transfer record, add account entries, update accout's balance within single DB transaction.
 func (store *Store) transferTx(ctx context.Context, arg TransferTxParams) (TransferTxResult, error) {
@@ -86,10 +88,57 @@ func (store *Store) transferTx(ctx context.Context, arg TransferTxParams) (Trans
 			return err
 		}
 
-		// TODO: update accounts balance.
+		if arg.FromAccountId < arg.ToAccountId {
+			err = addMoney(ctx, q, arg.FromAccountId, -arg.Amount, arg.ToAccountId, arg.Amount)
+		} else {
+			err = addMoney(ctx, q, arg.ToAccountId, arg.Amount, arg.FromAccountId, -arg.Amount)
+		}
+
+		if err != nil {
+			return err
+		}
+
+		result.FromAccount, err = q.GetAccount(ctx, arg.FromAccountId)
+
+		if err != nil {
+			return err
+		}
+
+		result.ToAccount, err = q.GetAccount(ctx, arg.ToAccountId)
+
+		if err != nil {
+			return err
+		}
 
 		return nil
 	})
 
 	return result, err
+}
+
+func addMoney(
+	ctx context.Context,
+	q *Queries,
+	accountID1 int64,
+	amount1 int64,
+	accountID2 int64,
+	amount2 int64,
+) (err error) {
+	err = q.UpdateAccountbalance(ctx, UpdateAccountbalanceParams{
+		ID:     accountID1,
+		Amount: amount1,
+	})
+	if err != nil {
+		return err
+	}
+
+	err = q.UpdateAccountbalance(ctx, UpdateAccountbalanceParams{
+		ID:     accountID2,
+		Amount: amount2,
+	})
+
+	if err != nil {
+		return err
+	}
+	return nil
 }
