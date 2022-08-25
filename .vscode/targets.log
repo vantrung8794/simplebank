@@ -6,11 +6,8 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # PARTICULAR PURPOSE.
 
 # This program built for i386-apple-darwin11.3.0
- 
-make: *** No rule to make target `all'.  Stop.
 
-
-# Make data base, printed on Wed Aug 24 21:33:57 2022
+# Make data base, printed on Thu Aug 25 13:17:07 2022
 
 # Variables
 
@@ -19,7 +16,6 @@ make: *** No rule to make target `all'.  Stop.
 # automatic
 ?F = $(notdir $?)
 # automatic
- 
 ?D = $(patsubst %/,%,$(dir $?))
 # automatic
 @D = $(patsubst %/,%,$(dir $@))
@@ -148,14 +144,13 @@ VSCODE_PID = 64883
 
 # Directories
 
-# . (device 16777220, inode 44328896): 10 files, no impossibilities.
+# . (device 16777220, inode 44328896): 14 files, no impossibilities.
 
-# 10 files, no impossibilities in 1 directories.
+# 14 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
 # No implicit rules.
- 
 
 # Files
 
@@ -244,7 +239,6 @@ migrateup:
 #  File does not exist.
 #  File has not been updated.
 #  commands to execute (from `Makefile', line 11):
- 
 	migrate -path db/migration -database "postgresql://root:secret@localhost:5432/simple_bank?sslmode=disable" -verbose up
 	
 
@@ -270,6 +264,8 @@ migratedown:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Wed Aug 24 21:33:57 2022
+# Finished Make data base on Thu Aug 25 13:17:07 2022
 
  
+make: *** No rule to make target `all'.  Stop.
+
