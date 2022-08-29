@@ -12,10 +12,10 @@ import (
 )
 
 type CreateUserRequest struct {
-	UserName string `json:"user_name" binding:"required,alphanum"`
+	UserName string `json:"username" binding:"required,alphanum"`
 	Password string `json:"password" binding:"required,min=6"`
 	Email    string `json:"email" binding:"required,email"`
-	FullName string `json:"fullname" binding:"required"`
+	FullName string `json:"full_name" binding:"required"`
 }
 
 type CreateUserResponse struct {
@@ -59,15 +59,10 @@ func (server *Server) createUser(ctx *gin.Context) {
 		return
 	}
 
-	loc, err := time.LoadLocation("Asia/Ho_Chi_Minh")
-	if err != nil {
-		ctx.JSON(http.StatusInternalServerError, errorResponse(err))
-		return
-	}
 	rsp := CreateUserResponse{
 		Username:          user.Username,
 		Email:             user.Email,
-		CreatedAt:         user.CreatedAt.In(loc),
+		CreatedAt:         user.CreatedAt,
 		FullName:          user.FullName,
 		PasswordChangedAt: user.PasswordChangedAt,
 	}
