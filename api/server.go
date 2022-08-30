@@ -5,20 +5,39 @@ import (
 	"github.com/gin-gonic/gin/binding"
 	"github.com/go-playground/validator/v10"
 	db "github.com/vantrung8794/simplebank/db/sqlc"
+	"github.com/vantrung8794/simplebank/token"
+	"github.com/vantrung8794/simplebank/util"
 )
 
 type Server struct {
-	store  db.Store
-	router *gin.Engine
+	config     util.Config
+	store      db.Store
+	tokenMaker token.Maker
+	router     *gin.Engine
 }
 
-func NewServer(store db.Store) *Server {
-	server := &Server{store: store}
+func NewServer(config util.Config, store db.Store) (*Server, error) {
+	tokenMaker, err := token.NewPasetoMaker(config.TokenSymmetricKey)
+	if err != nil {
+		return nil, err
+	}
+
+	server := &Server{
+		store:      store,
+		config:     config,
+		tokenMaker: tokenMaker,
+	}
 
 	if v, ok := binding.Validator.Engine().(*validator.Validate); ok {
 		v.RegisterValidation("currency", validCurrency)
 	}
 
+	server.setupRouter()
+
+	return server, nil
+}
+
+func (server *Server) setupRouter() {
 	router := gin.Default()
 
 	// Accounts
@@ -32,8 +51,9 @@ func NewServer(store db.Store) *Server {
 	// Users
 	router.POST("/users", server.createUser)
 	router.GET("/users/:user_name", server.getUser)
+	router.POST("/users/login", server.loginUser)
+
 	server.router = router
-	return server
 }
 
 func (server *Server) Start(address string) error {

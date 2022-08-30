@@ -14,8 +14,6 @@ func TestTransferTx(t *testing.T) {
 	account1 := CreateRandomAccount(t)
 	account2 := CreateRandomAccount(t)
 
-	fmt.Println(">> before:", account1.Balance, account2.Balance)
-
 	// run n concurent transfer transactions
 	n := 5
 	amount := int64(10)
@@ -90,8 +88,6 @@ func TestTransferTx(t *testing.T) {
 		require.NotEmpty(t, toAccount)
 		require.Equal(t, account2.ID, toAccount.ID)
 
-		fmt.Println(">> tx:", fromAccount.Balance, toAccount.Balance)
-
 		// check account's balance
 		diff1 := account1.Balance - fromAccount.Balance
 		diff2 := toAccount.Balance - account2.Balance
@@ -111,8 +107,6 @@ func TestTransferTx(t *testing.T) {
 
 	updateAccount2, err := testQueries.GetAccount(context.Background(), account2.ID)
 	require.NoError(t, err)
-
-	fmt.Println(">> after:", updateAccount1.Balance, updateAccount2.Balance)
 
 	require.Equal(t, account1.Balance-int64(n)*amount, updateAccount1.Balance)
 	require.Equal(t, account2.Balance+int64(n)*amount, updateAccount2.Balance)
