@@ -35,6 +35,21 @@ func (m *MockStore) EXPECT() *MockStoreMockRecorder {
 	return m.recorder
 }
 
+// AddAccountBalance mocks base method.
+func (m *MockStore) AddAccountBalance(arg0 context.Context, arg1 db.AddAccountBalanceParams) (db.Account, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "AddAccountBalance", arg0, arg1)
+	ret0, _ := ret[0].(db.Account)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// AddAccountBalance indicates an expected call of AddAccountBalance.
+func (mr *MockStoreMockRecorder) AddAccountBalance(arg0, arg1 interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "AddAccountBalance", reflect.TypeOf((*MockStore)(nil).AddAccountBalance), arg0, arg1)
+}
+
 // CreateAccount mocks base method.
 func (m *MockStore) CreateAccount(arg0 context.Context, arg1 db.CreateAccountParams) (db.Account, error) {
 	m.ctrl.T.Helper()
@@ -184,19 +199,19 @@ func (mr *MockStoreMockRecorder) GetUser(arg0, arg1 interface{}) *gomock.Call {
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetUser", reflect.TypeOf((*MockStore)(nil).GetUser), arg0, arg1)
 }
 
-// ListAccount mocks base method.
-func (m *MockStore) ListAccount(arg0 context.Context, arg1 db.ListAccountParams) ([]db.Account, error) {
+// ListAccounts mocks base method.
+func (m *MockStore) ListAccounts(arg0 context.Context, arg1 db.ListAccountsParams) ([]db.Account, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "ListAccount", arg0, arg1)
+	ret := m.ctrl.Call(m, "ListAccounts", arg0, arg1)
 	ret0, _ := ret[0].([]db.Account)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
-// ListAccount indicates an expected call of ListAccount.
-func (mr *MockStoreMockRecorder) ListAccount(arg0, arg1 interface{}) *gomock.Call {
+// ListAccounts indicates an expected call of ListAccounts.
+func (mr *MockStoreMockRecorder) ListAccounts(arg0, arg1 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ListAccount", reflect.TypeOf((*MockStore)(nil).ListAccount), arg0, arg1)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "ListAccounts", reflect.TypeOf((*MockStore)(nil).ListAccounts), arg0, arg1)
 }
 
 // ListEntries mocks base method.
@@ -245,29 +260,16 @@ func (mr *MockStoreMockRecorder) TransferTx(arg0, arg1 interface{}) *gomock.Call
 }
 
 // UpdateAccount mocks base method.
-func (m *MockStore) UpdateAccount(arg0 context.Context, arg1 db.UpdateAccountParams) error {
+func (m *MockStore) UpdateAccount(arg0 context.Context, arg1 db.UpdateAccountParams) (db.Account, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "UpdateAccount", arg0, arg1)
-	ret0, _ := ret[0].(error)
-	return ret0
+	ret0, _ := ret[0].(db.Account)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
 }
 
 // UpdateAccount indicates an expected call of UpdateAccount.
 func (mr *MockStoreMockRecorder) UpdateAccount(arg0, arg1 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateAccount", reflect.TypeOf((*MockStore)(nil).UpdateAccount), arg0, arg1)
-}
-
-// UpdateAccountbalance mocks base method.
-func (m *MockStore) UpdateAccountbalance(arg0 context.Context, arg1 db.UpdateAccountbalanceParams) error {
-	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "UpdateAccountbalance", arg0, arg1)
-	ret0, _ := ret[0].(error)
-	return ret0
-}
-
-// UpdateAccountbalance indicates an expected call of UpdateAccountbalance.
-func (mr *MockStoreMockRecorder) UpdateAccountbalance(arg0, arg1 interface{}) *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateAccountbalance", reflect.TypeOf((*MockStore)(nil).UpdateAccountbalance), arg0, arg1)
 }

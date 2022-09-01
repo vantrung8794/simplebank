@@ -74,29 +74,29 @@ func (server *Server) createUser(ctx *gin.Context) {
 	ctx.JSON(http.StatusCreated, rsp)
 }
 
-type GetUserRequest struct {
-	UserName string `uri:"user_name" binding:"required,alphanum"`
-}
+// type GetUserRequest struct {
+// 	UserName string `uri:"user_name" binding:"required,alphanum"`
+// }
 
-func (server *Server) getUser(ctx *gin.Context) {
-	var req GetUserRequest
-	if err := ctx.ShouldBindUri(&req); err != nil {
-		ctx.JSON(http.StatusBadRequest, errorResponse(err))
-		return
-	}
+// func (server *Server) getUser(ctx *gin.Context) {
+// 	var req GetUserRequest
+// 	if err := ctx.ShouldBindUri(&req); err != nil {
+// 		ctx.JSON(http.StatusBadRequest, errorResponse(err))
+// 		return
+// 	}
 
-	User, err := server.store.GetUser(ctx, req.UserName)
-	if err != nil {
-		if err == sql.ErrNoRows {
-			ctx.JSON(http.StatusNotFound, errorResponse(err))
-			return
-		}
-		ctx.JSON(http.StatusInternalServerError, errorResponse(err))
-		return
-	}
+// 	User, err := server.store.GetUser(ctx, req.UserName)
+// 	if err != nil {
+// 		if err == sql.ErrNoRows {
+// 			ctx.JSON(http.StatusNotFound, errorResponse(err))
+// 			return
+// 		}
+// 		ctx.JSON(http.StatusInternalServerError, errorResponse(err))
+// 		return
+// 	}
 
-	ctx.JSON(http.StatusOK, User)
-}
+// 	ctx.JSON(http.StatusOK, User)
+// }
 
 type LoginUserRequest struct {
 	UserName string `json:"username" binding:"required,alphanum"`
