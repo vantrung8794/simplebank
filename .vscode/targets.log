@@ -10,7 +10,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 make: *** No rule to make target `all'.  Stop.
 
 
-# Make data base, printed on Sat Sep  3 15:41:25 2022
+# Make data base, printed on Sun Sep  4 16:06:57 2022
 
 # Variables
 
@@ -36,6 +36,7 @@ _ = /usr/bin/make
 MAKEFILE_LIST :=  Makefile
 # environment
 VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
+ 
 # environment
 __CFBundleIdentifier = com.microsoft.VSCode
 # environment
@@ -51,7 +52,7 @@ ELECTRON_RUN_AS_NODE = 1
 # default
 .FEATURES := target-specific order-only second-expansion else-if archives jobserver check-symlink
 # environment
-SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.aYEkkAATRU/Listeners
+SSH_AUTH_SOCK = /private/tmp/com.apple.launchd.bpnqLwo9y8/Listeners
 # automatic
 %F = $(notdir $%)
 # environment
@@ -65,7 +66,7 @@ HOME = /Users/briannguyen
 # default
 MAKEFILEPATH := /Applications/Xcode.app/Contents/Developer/Makefiles
 # environment
-VSCODE_CODE_CACHE_PATH = /Users/briannguyen/Library/Application Support/Code/CachedData/e4503b30fc78200f846c62cf8091b76ff5547662
+VSCODE_CODE_CACHE_PATH = /Users/briannguyen/Library/Application Support/Code/CachedData/784b0177c56c607789f9638da7b6bf3230d47a8c
 # environment
 LOGNAME = briannguyen
 # environment
@@ -90,6 +91,8 @@ MAKE_VERSION := 3.81
 USER = briannguyen
 # makefile
 .DEFAULT_GOAL := postgres
+# environment
+GOROOT = /usr/local/go
 # automatic
 %D = $(patsubst %/,%,$(dir $%))
 # default
@@ -101,7 +104,7 @@ TMPDIR = /var/folders/gt/gtxcdm5922zfjyb1vvhwh3g00000gn/T/
 # automatic
 *F = $(notdir $*)
 # environment
-VSCODE_IPC_HOOK = /Users/briannguyen/Library/Application Support/Code/1.70.2-main.sock
+VSCODE_IPC_HOOK = /Users/briannguyen/Library/Application Support/Code/1.71.0-main.sock
 # environment
 MallocNanoZone = 0
 # makefile
@@ -111,7 +114,7 @@ MFLAGS = -Rrqp
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
-XPC_SERVICE_NAME = application.com.microsoft.VSCode.44508227.44508233
+XPC_SERVICE_NAME = application.com.microsoft.VSCode.45729526.45729532
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
 # automatic
@@ -137,9 +140,9 @@ MAKELEVEL := 0
 # environment
 LANG = C
 # environment
-VSCODE_PID = 849
+VSCODE_PID = 833
 # variable set hash-table stats:
-# Load=62/1024=6%, Rehash=0, Collisions=2/86=2%
+# Load=63/1024=6%, Rehash=0, Collisions=2/87=2%
 
 # Pattern-specific Variable Values
 
@@ -172,6 +175,7 @@ all:
 #  Implicit rule search has been done.
 #  File does not exist.
 #  File has not been updated.
+ 
 # variable set hash-table stats:
 # Load=0/32=0%, Rehash=0, Collisions=0/0=0%
 
@@ -279,6 +283,7 @@ migratedown:
 #  File has not been updated.
 #  commands to execute (from `Makefile', line 18):
 	migrate -path db/migration -database "postgresql://root:secret@localhost:5432/simple_bank?sslmode=disable" -verbose down
+ 
 	
 
 mock:
@@ -303,6 +308,6 @@ mock:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Sat Sep  3 15:41:25 2022
+# Finished Make data base on Sun Sep  4 16:06:57 2022
 
  
